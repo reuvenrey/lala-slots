@@ -1,0 +1,81 @@
+/* GENERIC ANIMATIONS */
+
+    @keyframes growShrink { /* Subtle grow -> shrink animation */
+        0% {scale:1;}
+        50% {scale:1.1;}
+        100% {scale:1;}
+    }
+
+    @keyframes dancingCat { /* For CatHouse Animations */
+        0%, 100% {scale:1; transform: rotate(-30deg); }
+        50% {scale:2; transform: rotate(30deg);}
+    }
+
+    @keyframes fadeInOut { /* */
+        0% {opacity: 0;}
+        20%, 80% {opacity: 1;}
+        100% {opacity:0;}
+    }
+
+    @keyframes bouncing {
+        0%,100% {transform: translateY(0px);}
+        25% {transform: translateY(20px);}
+        75% {transform: translateY(-20px);}
+    } 
+
+    @keyframes wobbling {
+        0%, 100% { filter: brightness(1); }
+        50% { filter: brightness(1.2); }
+    }
+
+    @keyframes sizeIn { 
+        0% {scale:10;}
+        100%{scale:1;}
+    }
+
+    @keyframes slideIn {
+        0% {transform: translateX(-100%);}
+        100% {transform: translateX(0);}
+    }
+
+    @keyframes blinking {
+       0%, 100% { filter: brightness(0.8); }
+        50% { filter: brightness(1.5); } 
+    }
+
+
+/* LOGO ANIMATION */ 
+    /* subtle pulse */
+    @keyframes logoPulse {
+    0%, 100% { scale: 1; }
+    25%      { scale: 1.05; }
+    50%      { scale: 0.93; }
+    75%      { scale: 1.08; }
+    }
+
+    /* occasional wiggle */
+    @keyframes logoWiggle {
+    0%, 90%, 100%   { transform: rotate(0deg); }
+    92%             { transform: rotate(2deg); }
+    94%             { transform: rotate(-2deg); }
+    96%             { transform: rotate(1deg); }
+    98%             { transform: rotate(0deg); }
+    }
+
+/* SHaking Box Animation */
+@keyframes accelerating-constant-bounce {
+    0% {transform: translateY(0);} /* 20% */
+    20% {transform: translateY(20px);}
+    40% {transform: translateY(-20px);}
+    55% {transform: translateY(20px);} /* 15% */
+    70% {transform: translateY(-20px);}
+    85% {transform: translateY(20px);}
+    95% {transform: translateY(-20px);}
+    100% {transform: translateY(20px);}
+}
+
+/* Puzzle Piece Entrance */
+@keyframes puzzleIn {
+    0% {scale:0.01; transform: rotate(360deg);}
+    100% {scale:1; transform: rotate(0deg);}
+}

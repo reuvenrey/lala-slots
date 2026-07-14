@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Style Sheets-->
+    <link rel="stylesheet" href="styles/pageStyle.css"> <!-- Styles the general page -->
+    <link rel="stylesheet" href="styles/animations.css"> <!-- Holds majority of the common animations -->
+    <link rel="stylesheet" href="styles/slotStyle.css"> <!-- Styling specifically for slot interface -->
+
+    <title>LA LA's Slots</title>
+</head>
+
+<body>
+
+    <!-- DEBUG MENU -->
+    <div id="debugMenu" style="display:none;">
+        <div style="border:2px solid white; border-radius: 10px; background:linear-gradient(midnightBlue,navy,midnightblue); padding:20px; width:90%; max-width:700px;">
+            <h1>Service Menu</h1>
+            <p><ul id="inOutData"></ul></p>
+            <p>
+                <h2>Debug - Set Row</h2>
+                Setup a result using the dropdowns below, then select which row to apply it to. After applying, close debug and spin! Resets after spin.
+                <div id="setRowDiv" style="margin:10px 0px 10px 0px"></div>
+                <select id="selectRowNumDiv"></select>
+                <button onclick="applyDebugRow();">Apply</button>
+            </p>
+            <button onclick="localStorage.clear();">Clear Stored Data</button> <button onclick="location.reload();">Refresh Program</button>
+            <p><button onclick="document.getElementById('debugMenu').style.display='none';">Close Menu</button></p>
+        </div>
+    </div>
+
+    <!-- GAME CONTAINER -->
+    <div id="gamePageContainer"> <!-- Contains the entire slots game -->
+        <div id="gameTitleBar"> <!-- Holds the slots logo, top of the screen -->
+            <img src="graphics/logos/lalaSlots.png">
+        </div>
+        <div id="jackpotWindow"> <!-- Displays the Jackpot -->
+            <div>
+                <div id="totalWinnedCreditsDisplay">Error</div>
+                <div style="font-size:20px; font-family: Verdana, Geneva, Tahoma, sans-serif;">IN WINNINGS</div>
+            </div>
+        </div>
+
+        
+        <div id="gameFooter"> <!-- Displays credits, stats, button uses, etc. -->
+            <div id="creditsDisplay">error</div>
+            <div id="lastWinDisplay">🌟 Last Win: +0</div>
+            <div id="costToPlayDisplay">▶️ 1 Play = 100 Credits</div>
+            <div style="flex:1;"><div id="userConsole">Game Initializing...</div></div>
+        </div>
+
+        <!-- animated graphics when win is triggered -->
+        <div id="catHouseGraphics">
+            <div class="background"></div>
+        </div>
+       
+
+        <!-- main slot machine element -->
+        <div id='slotMachine'>
+            <div id="lineIndicators"></div>
+            <div id="reelContainer"></div>
+            <div id="packageWinContainer" class="hidden"><img src='graphics/symbols/mysteryPackage.png'></div>
+            <div id="puzzleWinContainer" class="hidden"><div id='piecesDiv'></div></div>
+        </div>
+
+        <div id="puzzleCounterDiv">
+            <div id="puzzleCounterContainer">
+                <h4 style="font-size: 20px;" class="puzzleCounterTitle">Collect 9 <span><img src='graphics/symbols/puzzlePiece.png' style="display: inline-block; height:20px; margin:0px 5px 0px 5px;"></span> to unlock additional bonus</h4>
+                <div id="puzzleCounterDisplay"></div>
+            </div>
+            <div id="puzzleWinInstructions" class="hidden">
+                <h1>Press <b>SPIN</b> to select your bonus!</h1>
+            </div>
+        </div>
+
+        <!-- animated graphics to appear over slots -->
+        <div id="skullWinGraphics" style="display: none;">
+            <div><img id='skullFace' src="graphics/specialWins/bigSkull.png"></div>
+        </div>
+
+        <div id="superWinnerGraphic" style="display: none;"><img src='graphics/specialWins/explosion.png'></div>
+    </div>
+    
+
+</body>
+
+<!-- SCRIPTS -->
+
+<!-- Repositories / Storage Scripts -->
+ <script src="scripts/userSettings.js"></script> <!-- User settings set at game initialization -->
+ <script src="scripts/audioSetup.js"></script> <!-- Sets up all the game audio to be played in other scripts -->
+ <script src="scripts/userInputs.js"></script> <!-- Main event listener for key presses -->
+
+<!-- Main Game Control Scripts -->
+<script src="scripts/gameManager.js"></script> <!-- Controls the entire game -->
+
+<!-- Function Containers -->
+<script src="scripts/functions.js"></script>
+<script src="scripts/winFunctions.js"></script>
+
+<!-- Game Setup (on reload) -->
+ <script src="scripts/gameSetup.js"></script> <!-- Setup the game after a relod -->
+

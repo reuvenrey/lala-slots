@@ -1,0 +1,101 @@
+/* -- CUSTOM FONTS */
+@font-face {
+  font-family: 'fasterOne';
+  src: url('fonts/FasterOne-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* page stylying */
+
+* {box-sizing: border-box;} /* So all divs include margin and padding in their width */
+
+body{
+    width:100vw; height:100vh;
+    background-image: url("../graphics/mainPage/wallpaper.jpg");
+    background-repeat: repeat;
+    background-size: 100px 100px;
+    margin:0; padding: 0;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#gamePageContainer { /* Holds the entire game */ 
+    width:1080px; height: 1920px;
+    transform-origin: center center;
+}
+
+    #gameTitleBar{ /* holds the game's logo */
+        height:25%; width:100%;
+        display: flex; align-items: center; justify-content: center;
+    }
+
+        #gameTitleBar > img {
+            height:80%;
+            animation: logoPulse 4s ease-in-out infinite, logoWiggle 8s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+    #jackpotWindow { /* window that displays the jackpot amount */
+        height:150px; width:100%;
+        display: flex; align-items: center; justify-content: center;
+        padding:10px;
+    }
+        #jackpotWindow > div {
+            background:white;
+            width:100%; height:100%;
+            display: flex; align-items: center; justify-content: center;
+            flex-flow:column;
+        }
+        #totalWinnedCreditsDisplay {
+            text-align: center; font-size: 80px;
+            font-family: 'fasterOne', sans-serif;
+            color:goldenrod;
+        }
+
+    #gameFooter { /* Window that display user's credits, stats, etc. */
+        height:100px; width:100%;
+        background: linear-gradient(90deg,rgba(255, 255, 255, 0.6),white,rgba(255, 255, 255, 0.6));
+        display:flex; flex-flow: row; 
+        align-items: center; justify-content: left;
+        padding:10px;
+        position:absolute; bottom:10px;
+    }
+        #gameFooter > div {font-size: 22px; padding:0px 10px 0px 10px;}
+
+        #userConsole {border:2px solid black; border-radius: 10px; background: linear-gradient(90deg,navy,blue,navy); color:gold; padding:5px 10px 5px 10px;}
+
+
+    /* PUZZLE PIECE COUNTER */
+    #puzzleCounterDiv {
+        width:100%;
+        display: flex; align-items: center; justify-content: center;
+        padding:10px; position: relative;
+    }
+        #puzzleCounterContainer {
+            background:white;
+            width:100%; height:100%;
+            display: flex; align-items: center; justify-content: center; flex-flow:column;
+        }
+        #puzzleCounterDisplay {
+            display:flex; flex-flow: row; justify-content: flex-start;
+            width:100%; height:100px;
+            padding:10px 20px 10px 20px;
+        }
+        #puzzleCounterDisplay > img {
+            height:100%; width:auto; 
+        }
+        img.newPuzzle {
+            animation: puzzleIn 0.5s forwards;
+        }
+
+/* DEBUG MENU */
+#debugMenu{
+    position:absolute; top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0, 0, 0, 0.75); color:white;
+    align-items: center; justify-content: center;
+    z-index: 999; display:flex;
+}
