@@ -8,6 +8,7 @@ For a full description of the game and how it works, please read the <a href='sl
   <li><b>Add Money</b> (Debug) [s]</li>
   <li><b>Toggle Autospin</b> [a]</li>
   <li><b>Open Debug Menu</b> [m]</li>
+  <li>Toggle on-screen controls [o]</li>
 </ul>
 
 <h2>Gameplay</h2>
