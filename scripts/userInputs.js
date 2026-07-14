@@ -1,12 +1,6 @@
 /* Key press functions (simple functions to run on key press). 
 More complex functions (like spinning reels) take place in the game manager but
 are called in the event listener below */
-function addCoin(){
-    gameCredits += 25;
-    document.getElementById('creditsDisplay').innerHTML = "🪙" + gameCredits + " credits";
-    insertCoinSound.currentTime = 0;
-    insertCoinSound.play();
-}
 
 // Event Listener - add 'else if' when needing a new key
 document.addEventListener("keydown", (event) => {
@@ -44,6 +38,20 @@ document.addEventListener("keydown", (event) => {
     }else if(event.key.toLowerCase() === "s"){ // DEBUG - set credits value
         creditsAdd = +prompt('Enter a credits value (integers only)','0');
         finishAnimations();
+    }else if(event.key.toLowerCase() === "0"){ // Toggle ON-SCREEN controls
+        let oscDiv = document.getElementById('oscDiv');
+        if(oscDiv.style.display == 'block'){
+            oscDiv.style.display = 'none';
+        }else{
+            oscDiv.style.display = 'block';
+        }
     }
 });
 
+// This is the function that runs when k is pressed (or when a quarter is inserted)
+function addCoin(){
+    gameCredits += 25;
+    document.getElementById('creditsDisplay').innerHTML = "🪙" + gameCredits + " credits";
+    insertCoinSound.currentTime = 0;
+    insertCoinSound.play();
+}
