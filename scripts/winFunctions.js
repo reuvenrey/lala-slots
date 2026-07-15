@@ -81,6 +81,47 @@ function checkForPackage(){
     }
 }
 
+    // PACKAGE BONUS
+    function runPackageWin(packageCount){
+        let packageWinContainer = document.getElementById('packageWinContainer');
+
+        addMultiplierSound.play();
+        packageWinContainer.classList.remove('hidden');
+
+        // Choose the multiplier amount
+        let random = Math.floor(Math.random() * 6);  // random number 0,1,2,3,4,5
+        var randomFixed; 
+        if(random == 1 || random == 4){randomFixed = 3;}
+        else if(random == 2){randomFixed = 4;}
+        else{randomFixed = 2;}
+
+        // New winnings = (common + previous winnings)*(packageMultiplier)*(number of packages)
+        console.log('Random og = ' +random+'. Random fixed: '+randomFixed);
+        creditsAdd = creditsAdd*(randomFixed)*packageCount.length;
+
+        // Play box shaking sounds
+        setTimeout(() => {
+            boxShaking.play();
+        },500)
+
+        // 
+        setTimeout(() => {
+            boostSound.play();
+            packageWinContainer.classList.add('hidden');
+
+            // Change package icons to multiplier
+            for(i=0; i<packageCount.length; i++){
+                let temp = packageCount[i];
+                document.getElementById('reel-'+temp.col+'-line-'+temp.row).innerHTML = "<img src='graphics/multipliers/x"+randomFixed+".png' class='packageImage'>";
+            }
+
+        }, 3000);
+
+        // Back to scoring
+        setTimeout(() => {checkCathouseWins()}, 3500);
+    }// end of runPackageBonus
+
+
 // 4. Check for CatHouse Wins
 function checkCathouseWins(){
     var delayTime = 0;
@@ -116,6 +157,9 @@ function checkCathouseWins(){
                     }
                 }
             }
+            // Activate (and deactivate) catHouseGraphic
+            document.getElementById('catHouseGraphics').classList.remove('hidden');
+            setTimeout(() => {document.getElementById('catHouseGraphics').classList.add('hidden');},10000);
 
             delayTime = 1;
             catHouseWin.currentTime = 0; catHouseWin.play();
@@ -124,56 +168,6 @@ function checkCathouseWins(){
     }
 
     setTimeout(() => {checkPuzzle()}, delayTime*1000);
-}
-
-
-// PACKAGE BONUS
-function runPackageWin(packageCount){
-    let packageWinContainer = document.getElementById('packageWinContainer');
-
-    addMultiplierSound.play();
-    packageWinContainer.classList.remove('hidden');
-
-    // Choose the multiplier amount
-    let random = Math.floor(Math.random() * 5);  // random number 0,1,2,3,4
-    var randomFixed; 
-    switch (random) {
-        case 2:
-            randomFixed = 3;
-            break;
-        case 3:
-            randomFixed = 3;
-            break;
-        case 4:
-            randomFixed = 4;
-            break;
-        default:
-            randomFixed = 2;
-            break;
-    }
-    console.log('Random og = ' +random+'. Random fixed: '+randomFixed);
-    creditsAdd = creditsAdd*(randomFixed)*packageCount.length;
-
-    // Play box shaking sounds
-    setTimeout(() => {
-        boxShaking.play();
-    },500)
-
-    // 
-    setTimeout(() => {
-        boostSound.play();
-        packageWinContainer.classList.add('hidden');
-
-        // Change package icons to multiplier
-        for(i=0; i<packageCount.length; i++){
-            let temp = packageCount[i];
-            document.getElementById('reel-'+temp.col+'-line-'+temp.row).innerHTML = "<img src='graphics/multipliers/x"+randomFixed+".png' class='packageImage'>";
-        }
-
-    }, 3000);
-
-    // Back to scoring
-    setTimeout(() => {checkCathouseWins()}, 3500);
 }
 
 // SPECIAL WINS
@@ -189,7 +183,7 @@ function runPackageWin(packageCount){
             if(thisItem.item == 'puzzlePiece'){
                 delayTime = 0.5; // add delay time for animation to play
                 numPuzzlePiece += 1; // add one to puzzle piece count
-                if(numPuzzlePiece <= 9){
+                if(numPuzzlePiece <= 10){
                     // Add puzzle piece to tracker
                     setTimeout(() => {
                         document.getElementById('reel-'+thisItem.col+'-line-'+thisItem.row).classList.add('isPuzzlePiece');
@@ -207,7 +201,7 @@ function runPackageWin(packageCount){
             }
         }
 
-        if(numPuzzlePiece >= 9){// collected enough puzzle pieces
+        if(numPuzzlePiece >= 10){// collected enough puzzle pieces
             runPuzzleBonus();
         }else{ // No Puzzle BOnus Yet
             if(delayTime != 0){puzzleCollect.currentTime = 0; puzzleCollect.play();}// play puzzlePieceFoundSound
@@ -220,6 +214,7 @@ function runPackageWin(packageCount){
             // Initiate puzzle win
             numPuzzlePiece = 0;
             document.getElementById('puzzleCounterDisplay').innerHTML = '';
+            document.getElementById('puzzleWinInstructions').innerHTML = '<h1>Press <b>SPIN</b> to select your bonus!</h1>';
             document.getElementById('puzzleWinInstructions').classList.remove('hidden');
             puzzleStart.play();
 
@@ -236,11 +231,12 @@ function runPackageWin(packageCount){
 
         function endPuzzleBonus(){
             gameMode = 'waiting';
+            document.getElementById('puzzleWinInstructions').innerHTML = '<h1 style="font-size:100px">🤔</h1>';
 
             // Slow Animation
             clearInterval(puzzleAnim);
             let delayTime = 200;
-            let random = Math.floor(Math.random() * 5) + 3;  // random number 3,4,5,6
+            let random = Math.floor(Math.random() * 6) + 2;  // random number 2,3,4,5,6
             for(i=1; i<=random; i++){
                 let delay = i*i;
 
@@ -322,13 +318,7 @@ function finishAnimations(){
     allowInput = true;
     gameMode = 'idle';
     
-    // Super Winner
-    if(creditsAdd >= 1000){
-        superWinSfx.play();
-        document.getElementById('userConsole').innerHTML = "Super Winner!! 🤯";
-        document.getElementById('superWinnerGraphic').style.display = 'block';
-        setTimeout(() => {document.getElementById('superWinnerGraphic').style.display = 'none';},1000);
-    }
+    
 
     // Add winnings to users credits
     if(creditsAdd != 0){
@@ -341,6 +331,17 @@ function finishAnimations(){
         
         // Play the winCoin animation (total earnings display)
         winCoins(creditsAdd);
+
+        // Super Winner
+        if(creditsAdd >= 1000){
+            superWinSfx.play();
+            document.getElementById('userConsole').innerHTML = "Super Winner!! 🤯";
+            document.getElementById('superWinnerGraphic').style.display = 'block';
+            setTimeout(() => {document.getElementById('superWinnerGraphic').style.display = 'none';},1000);
+        }
+
+        // When user determines autoSpin applies to winning spins
+        if(stopOnWin == false && autoSpin){spinReels();}
 
     }else{// User wins nothing
         userConsole.innerHTML = "Better luck next time";

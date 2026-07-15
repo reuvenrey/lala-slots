@@ -13,8 +13,13 @@
 
     @keyframes fadeInOut { /* */
         0% {opacity: 0;}
-        20%, 80% {opacity: 1;}
+        50% {opacity: 1;}
         100% {opacity:0;}
+    }
+
+    @keyframes fadeIn {
+        0% {opacity: 0;}
+        100% {opacity: 1;}
     }
 
     @keyframes bouncing {
@@ -41,6 +46,11 @@
     @keyframes blinking {
        0%, 100% { filter: brightness(0.8); }
         50% { filter: brightness(1.5); } 
+    }
+
+    @keyframes flyThrough {
+        0% {transform: translateY(-100%);}
+        100% {transform: translateY(100%);}
     }
 
 

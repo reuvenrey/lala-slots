@@ -3,8 +3,9 @@
         aspect-ratio: 5/4;
         border:5px solid black;
         background: linear-gradient(gray 0%,white 40%,white 60%,gray 100%);
-        position:relative;
+        position:relative; 
 }
+    #slotMachine.autoSpin {background: linear-gradient(gray 0%,rgb(197, 255, 200) 40%,rgb(197, 255, 200) 60%,gray 100%);}
 
     /* Slot Machine UI */
     #reelContainer { /* main container holding the 5 reels */
@@ -60,15 +61,15 @@
             animation: growShrink 0.8s ease-in-out infinite, blinking 0.8s infinite;
         }
         .reelItem.premiumWin {
-            border:2px solid gold;
+            border:5px solid gold;
             background:url('../graphics/goldenSparkles.gif'); 
         }
             .reelItem.premiumWin > img{
-                animation: growShrink 0.8s ease-in-out infinite;
+                animation: growShrink 0.8s ease-in-out infinite, blinking 0.6s infinite;
             }
 
             .reelItem.catHouse > img{
-                animation: dancingCat 1s infinite;
+                animation: growShrink 0.8s ease-in-out infinite, blinking 0.6s infinite;
             }
 
             .reelItem.isPuzzlePiece > img{
@@ -81,8 +82,15 @@
 /* CAT HOUSE GRAPHICS */
     #catHouseGraphics{
         position:absolute;
-        top:0; bottom:0;
+        top:0; width:100%;
+        display:flex; flex-flow:row; flex-wrap: wrap;
+        animation: flyThrough 9s ease-in-out forwards;
+        background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.7),rgba(0,0,0,0));
     }
+        #catHouseGraphics > div {width:25%; margin:0; padding:50px; align-self: stretch;}
+        #catHouseGraphics > div > img {animation: dancingCat 1s infinite; width:100%; height:auto;}
+
+        #catHouseGraphics.hidden{display:none;}
 
 /* SKULL WIN GRAPHICS */
     #skullWinGraphics {

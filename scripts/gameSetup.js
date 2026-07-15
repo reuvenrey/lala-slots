@@ -8,7 +8,7 @@ totalEarnings = localStorage.getItem('totalEarnings'); // Total amount of money 
 if(totalEarnings == null){totalEarnings = 0; localStorage.setItem('totalEarnings', totalEarnings);}
 
 // Setup UI
-document.getElementById('totalWinnedCreditsDisplay').innerHTML = "$" + totalWinnings/100;
+document.getElementById('totalWinnedCreditsDisplay').innerHTML = "$" + formatNumber(totalWinnings/creditToDollar);
 document.getElementById('creditsDisplay').innerHTML ="🪙" +  gameCredits + " credits";
 document.getElementById('userConsole').innerHTML = "Getting game ready...";
 document.getElementById('costToPlayDisplay').innerHTML = "▶️ 1 Play = "+gameCost+" Credits";
@@ -43,5 +43,21 @@ function resizeGame() {
     game.style.transform = `scale(${scale})`;
 }
 
+// Setup CATHOUSE Graphics
+let catHouseGraphic = document.getElementById('catHouseGraphics');
+
+for(i=0; i<4*10; i++){
+    let rando = Math.floor(Math.random() * 10); // random number between 0 and 9
+    if(rando == 0 || rando == 9){catHouseGraphic.innerHTML += "<div><img src='graphics/realisticCats/gingy.png'></div>";}
+    else if(rando == 1 || rando == 8){catHouseGraphic.innerHTML += "<div><img src='graphics/realisticCats/remy.png'></div>";}
+    else if(rando == 2 || rando == 7){catHouseGraphic.innerHTML += "<div><img src='graphics/realisticCats/kitty.png'></div>";}
+    else if(rando == 3 || rando == 6){catHouseGraphic.innerHTML += "<div><img src='graphics/realisticCats/dancingCat.gif'></div>";}
+    else{catHouseGraphic.innerHTML += "<div></div>";}
+
+}
+//<div><img src='graphics/realisticCats/gingy.png'></div><div><img src='graphics/realisticCats/remy.png'></div>
 window.addEventListener("resize", resizeGame);
 resizeGame();
+
+// Finish Setup
+userConsole.innerHTML = 'Ready to SPIN';

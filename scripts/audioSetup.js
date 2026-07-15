@@ -58,3 +58,7 @@ superWinSfx.preload = "auto"; superWinSfx.load();
 // Ambiance Sounds
 ambianceSound = new Audio('audio/casinoAmbiance.mp3');
 ambianceSound.preload = "auto"; ambianceSound.load();
+
+// Cash Out
+cashOutSound = new Audio('audio/cashOut.mp3');
+cashOutSound.preload = "auto"; cashOutSound.load();

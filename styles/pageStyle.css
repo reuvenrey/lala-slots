@@ -56,12 +56,13 @@ body{
         }
 
     #gameFooter { /* Window that display user's credits, stats, etc. */
-        height:100px; width:100%;
-        background: linear-gradient(90deg,rgba(255, 255, 255, 0.6),white,rgba(255, 255, 255, 0.6));
+        height:80px; width:100%;
+        background: linear-gradient(white,silver);
         display:flex; flex-flow: row; 
         align-items: center; justify-content: left;
-        padding:10px;
-        position:absolute; bottom:10px;
+        padding:10px 40px 0px 40px; border:10px solid black; border-bottom: none;
+        border-top-left-radius: 80px; border-top-right-radius: 80px;
+        position:absolute; bottom:0;
     }
         #gameFooter > div {font-size: 22px; padding:0px 10px 0px 10px;}
 
@@ -99,3 +100,17 @@ body{
     align-items: center; justify-content: center;
     z-index: 999; display:flex;
 }
+
+#cashOutContainer {
+    position: absolute; z-index:999;
+    top:0; left:0; width:100%; height:100%;
+    background:linear-gradient(midnightblue,blue,midnightblue);
+    display: flex; animation: fadeIn 0.8s forwards;
+    align-items: center; justify-content: center;
+    color:white; text-align: center;
+}
+
+    #cashOutContainer.hidden {display:none;}
+
+    .blinkingBorder {position: absolute; top:0; left:0; width:100%; height:100%; border: 40px solid gold; text-align: center;}
+    .blinkingBorder > h1 {color:gold; animation: blinking 0.3s infinite; border-top:300px; font-size: 100px;}

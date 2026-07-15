@@ -26,12 +26,16 @@ document.addEventListener("keydown", (event) => {
             shortBeep.play();
         }
     }else if(event.key.toLowerCase() === "a"){ // Autospin toggle
-        if(autoSpin){
+        if(gameMode == 'confirmed-cash-out'){
+            location.reload();
+        }else if(autoSpin){
             autoSpin = false;
             document.getElementById('userConsole').innerHTML = '🔂✖️ Auto Spin Disabled';
+            document.getElementById('slotMachine').classList.remove('autoSpin');
         }else{
             autoSpin = true;
             document.getElementById('userConsole').innerHTML = '🔂 Auto Spin Enabled';
+            document.getElementById('slotMachine').classList.add('autoSpin');
         }
         shortBeep.play();
        
@@ -45,12 +49,20 @@ document.addEventListener("keydown", (event) => {
         }else{
             oscDiv.style.display = 'block';
         }
+    }else if(event.key.toLowerCase() === "c"){ // CASH OUT
+        if(gameMode == 'cash-out'){
+            document.getElementById('cashOutInfo').innerHTML += "<p>Press AUTOSPIN Button to close this window <br><b style='color:orange'>! this action will reset coins to 0 !<b></p>"
+            gameMode = 'confirmed-cash-out';
+            shortBeep.play();
+        }else{
+            gameOver();
+        }
     }
 });
 
 // This is the function that runs when k is pressed (or when a quarter is inserted)
 function addCoin(){
-    gameCredits += 25;
+    gameCredits += creditPerCoin;
     document.getElementById('creditsDisplay').innerHTML = "🪙" + gameCredits + " credits";
     insertCoinSound.currentTime = 0;
     insertCoinSound.play();

@@ -50,7 +50,7 @@ function winCoins(amount) {
 
     function addCoinIndividual(addNumber) {
         startValue += addNumber;
-        document.getElementById('totalWinnedCreditsDisplay').innerHTML = "$" + formatNumber(startValue/100);
+        document.getElementById('totalWinnedCreditsDisplay').innerHTML = "$" + formatNumber(startValue/creditToDollar);
         insertCoinSound.currentTime = 0;
         insertCoinSound.play();
     }
@@ -97,9 +97,9 @@ function formatNumber(number) {
 
 // Function that runs when the debug menu is opened
 function openDebugMenu(){
-    let lProfit = (totalEarnings-totalWinnings)/100;
-    document.getElementById('inOutData').innerHTML = "<li>Lifetime Gross Earnings: <span style='color:lime'>$"+ totalEarnings/100 + "</span></li>\
-        <li>Lifetime Gross Payout: <span style='color:orange'>$"+ totalWinnings/100 + "</span></li>\
+    let lProfit = (totalEarnings-totalWinnings)/creditToDollar;
+    document.getElementById('inOutData').innerHTML = "<li>Lifetime Gross Earnings: <span style='color:lime'>$"+ totalEarnings/creditToDollar + "</span></li>\
+        <li>Lifetime Gross Payout: <span style='color:orange'>$"+ totalWinnings/creditToDollar + "</span></li>\
         <li>Lifetime Profit: <b>$"+lProfit.toFixed(2)+"</b></li>\
         <li>Payout/Win Ratio: <b>"+ ((totalWinnings/totalEarnings)*100).toFixed(2) + "%</b> ($1 earnings = $"+(totalWinnings/totalEarnings).toFixed(2)+" paid out)</li>";
     

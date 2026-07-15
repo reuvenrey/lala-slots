@@ -42,17 +42,12 @@
             </div>
         </div>
 
+        <div id="costToPlayDisplay" style="display:none;">▶️ 1 Play = 100 Credits</div>
         
         <div id="gameFooter"> <!-- Displays credits, stats, button uses, etc. -->
             <div id="creditsDisplay">error</div>
             <div id="lastWinDisplay">🌟 Last Win: +0</div>
-            <div id="costToPlayDisplay">▶️ 1 Play = 100 Credits</div>
             <div style="flex:1;"><div id="userConsole">Game Initializing...</div></div>
-        </div>
-
-        <!-- animated graphics when win is triggered -->
-        <div id="catHouseGraphics">
-            <div class="background"></div>
         </div>
        
 
@@ -66,7 +61,7 @@
 
         <div id="puzzleCounterDiv">
             <div id="puzzleCounterContainer">
-                <h4 style="font-size: 20px;" class="puzzleCounterTitle">Collect 9 <span><img src='graphics/symbols/puzzlePiece.png' style="display: inline-block; height:20px; margin:0px 5px 0px 5px;"></span> to unlock additional bonus</h4>
+                <h4 style="font-size: 20px;" class="puzzleCounterTitle">Collect 10 <span><img src='graphics/symbols/puzzlePiece.png' style="display: inline-block; height:20px; margin:0px 5px 0px 5px;"></span> to unlock additional bonus</h4>
                 <div id="puzzleCounterDisplay"></div>
             </div>
             <div id="puzzleWinInstructions" class="hidden">
@@ -78,8 +73,16 @@
         <div id="skullWinGraphics" style="display: none;">
             <div><img id='skullFace' src="graphics/specialWins/bigSkull.png"></div>
         </div>
-
+        <div id="catHouseGraphics" class="hidden"></div>
         <div id="superWinnerGraphic" style="display: none;"><img src='graphics/specialWins/explosion.png'></div>
+
+        <div id="cashOutContainer" class="hidden">
+            <div class="blinkingBorder"><h1>💸 CASH OUT</h1></div>
+            <div>
+                <h1>Cash Out</h1>
+                <p id="cashOutInfo"></p>
+            </div>
+        </div>
     </div>
     
 

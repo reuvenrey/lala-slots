@@ -201,6 +201,16 @@ function spinReels(){
             }
     }
 
+// CASH OUT - GAME END
+function gameOver(){
+    if(gameMode == 'idle'){
+        gameMode = 'cash-out';
+        cashOutSound.play();
 
-// Finish Setup
-userConsole.innerHTML = 'Ready to SPIN';
+        // Show Window
+        document.getElementById('cashOutContainer').classList.remove('hidden');
+
+        document.getElementById('cashOutInfo').innerHTML = "User is owed <b>$"+formatNumber(gameCredits/creditToDollar)+"</b>";
+    }
+}
+
